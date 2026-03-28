@@ -11,6 +11,17 @@ export default function Header() {
   const [userName, setUserName] = useState<string | null>(null);
   const [userGender, setUserGender] = useState<string>('neutral');
 
+  const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 80);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
   useEffect(() => {
     const handleStorageChange = () => {
       const activeUser = localStorage.getItem('loggedInUser');
@@ -34,17 +45,29 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-green-950/80 backdrop-blur-[32px] saturate-150 z-50 shadow-[0_4px_30px_rgb(0,0,0,0.15)] border-b border-green-800/80 transition-all" suppressHydrationWarning>
+    <header
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+    ${scrolled
+      ? "bg-white/70 backdrop-blur-md shadow-sm"
+      : "bg-transparent"
+    }`}
+>
       <div className="container mx-auto px-6 h-[76px] flex justify-between items-center text-green-50">
 
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.03]">
           <div className="relative h-11 w-11 overflow-hidden rounded-full border-[2.5px] border-green-600 transition-transform duration-300 group-hover:scale-110 shadow-md flex items-center justify-center bg-white cursor-pointer">
             <Image src="/logo.png" alt="PlantCare AI logo" fill sizes="44px" className="object-cover" />
           </div>
           <span className="text-[22px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-100 to-green-400 tracking-tight ml-1 font-poppins cursor-pointer drop-shadow-sm">PlantCare AI</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1 font-bold text-[14px] bg-green-900/40 backdrop-blur-lg p-1.5 rounded-full border border-green-800/50 shadow-inner">
+        <nav
+        className={`hidden lg:flex items-center gap-1 font-bold text-[14px] p-1.5 rounded-full transition-all duration-300
+        ${scrolled
+          ? "bg-green-900/80 backdrop-blur-md shadow-lg border border-green-800/50"
+          : "bg-transparent border-none shadow-none"
+        }`}
+>
           <Link href="/" className="group flex items-center gap-2 px-4 py-2 rounded-full hover:bg-green-800/80 hover:shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-300 text-green-100/90 hover:text-white transform active:scale-95">
             <Home className="w-4 h-4 text-green-400/80 group-hover:text-green-300 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-0.5" />
             <span>Home</span>
@@ -106,8 +129,11 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex items-center gap-5 font-bold text-[15px]">
-            <Link href="/signup" className="text-green-200/90 hover:text-green-50 transition-colors hidden sm:block">Sign Up</Link>
-            <Link href="/login" className="bg-green-600 text-white px-7 py-2.5 rounded-full shadow-[0_4px_15px_rgba(22,163,74,0.3)] hover:bg-green-500 hover:shadow-[0_8px_25px_rgba(22,163,74,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center">Log In</Link>
+            <Link
+            href="/signup"className="text-green-800 hover:bg-green-100 px-4 py-1.5 rounded-full transition-all hidden sm:block font-semibold">Sign Up</Link>
+
+            <Link
+            href="/login"className="bg-gradient-to-r from-green-600 to-emerald-500 text-white px-6 py-2 rounded-full shadow-[0_6px_20px_rgba(22,163,74,0.35)] hover:shadow-[0_10px_30px_rgba(22,163,74,0.45)] hover:scale-[1.03] transition-all duration-300 flex items-center justify-center font-semibold">Log In</Link>
           </div>
         )}
 

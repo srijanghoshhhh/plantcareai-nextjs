@@ -49,77 +49,106 @@ export default function Home() {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   return (
-    <main className="w-full min-h-screen bg-stone-50 flex flex-col font-sans">
+    <main className="w-full min-h-screen bg-transparent flex flex-col font-sans">
       {/* HERO SECTION */}
-      <section className="relative w-full h-screen overflow-hidden flex items-center justify-start pt-16 shrink-0">
-        <div className="absolute inset-0 z-0 bg-green-950">
-          <Image
-            src="/bgimg.jpg"
-            alt="Various plants in pots"
-            fill
-            sizes="100vw"
-            className="object-cover object-center animate-kenburns opacity-90"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-900/70 to-transparent"></div>
-          <div className="absolute inset-0 bg-black/10"></div>
-        </div>
+<section className="relative w-full min-h-[calc(100vh-80px)] overflow-hidden flex items-center justify-start shrink-0">
 
-        <div className="container mx-auto relative z-10 px-6 sm:px-12 md:px-16 lg:px-24 max-w-[1400px] mb-10">
-          <div className="max-w-4xl pt-10">
-            <h1 className="text-white text-[3.5rem] sm:text-7xl lg:text-[6.5rem] font-extrabold leading-[1.05] tracking-tight drop-shadow-2xl mb-8 animate-fade-in-up">
-              Detect Plant <span className="text-green-400 opacity-90 relative inline-block after:absolute after:w-full after:h-4 after:bg-green-600/30 after:bottom-2 after:left-0 after:-z-10 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-emerald-400">Diseases</span> Instantly With AI
-            </h1>
+  {/* Background */}
+  <div className="absolute inset-0 z-0 bg-green-950">
+    <Image
+      src="/bgimg.jpg"
+      alt="Various plants in pots"
+      fill
+      sizes="100vw"
+      className="object-cover object-center opacity-90"
+      priority
+    />
 
-            <p className="text-green-50 text-xl md:text-3xl font-medium drop-shadow-md mb-3 animate-fade-in-up animation-delay-150 max-w-2xl leading-snug">
-              Upload a photo of your plant and get instant diagnosis
-            </p>
-            <p className="text-green-100/90 text-lg md:text-2xl font-medium drop-shadow-md mb-14 animate-fade-in-up animation-delay-300 max-w-xl">
-              with expert-verified results.
-            </p>
+    {/* Left gradient */}
+    <div className="absolute inset-0 bg-gradient-to-r from-green-950 via-green-950/80 to-transparent"></div>
 
-            <div className="flex flex-col xl:flex-row items-start xl:items-center gap-8 animate-fade-in-up animation-delay-500">
-              <button
-                onClick={() => openModal('device')}
-                className="group relative overflow-hidden bg-white text-green-900 font-bold px-8 py-4 rounded-full shadow-[0_10px_40px_rgba(255,255,255,0.25)] hover:shadow-[0_15px_50px_rgba(255,255,255,0.4)] transition-all duration-300 ease-out transform hover:-translate-y-1 flex items-center gap-4"
-              >
-                <span className="relative z-10 font-poppins text-[19px] tracking-wide ml-2">Start Scanning</span>
-                <span className="relative z-10 w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center group-hover:bg-green-700 group-hover:text-white transition-colors duration-300 shadow-sm">
-                  <svg className="w-5 h-5 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
+    {/* Dark overlay */}
+    <div className="absolute inset-0 bg-black/40"></div>
 
-              <div className="flex flex-col sm:flex-row gap-5 sm:gap-7 text-green-50 font-poppins text-sm md:text-base opacity-95 backdrop-blur-md bg-black/25 py-3.5 px-7 rounded-2xl border border-white/15 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-3 w-3 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </div>
-                  <span className="font-semibold tracking-wide">10,000+ Diagnosed</span>
-                </div>
-                <div className="hidden sm:block text-white/30 font-light">|</div>
-                <div className="flex items-center gap-3">
-                  <div className="h-3 w-3 relative"><span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.6)]"></span></div>
-                  <span className="font-semibold tracking-wide">98% Accuracy</span>
-                </div>
-                <div className="hidden sm:block text-white/30 font-light">|</div>
-                <div className="flex items-center gap-3">
-                  <div className="h-3 w-3 relative"><span className="relative inline-flex rounded-full h-3 w-3 bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)]"></span></div>
-                  <span className="font-semibold tracking-wide">Expert Verified</span>
-                </div>
-              </div>
+    {/* Bottom fade */}
+    <div className="absolute bottom-0 left-0 w-full h-60 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
+  </div>
+
+  {/* Content */}
+  <div className="container mx-auto relative z-10 px-6 sm:px-12 md:px-16 lg:px-24 max-w-[1400px]">
+    <div className="max-w-4xl pt-20">
+
+      <h1 className="text-white text-[3.5rem] sm:text-7xl lg:text-[6.5rem] font-extrabold leading-[1.05] tracking-tight drop-shadow-2xl mb-8 animate-fade-in-up">
+        Detect Plant{" "}
+        <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-emerald-400 after:absolute after:w-full after:h-4 after:bg-green-600/30 after:bottom-2 after:left-0 after:-z-10">
+          Diseases
+        </span>{" "}
+        Instantly With AI
+      </h1>
+
+      <p className="text-green-50 text-xl md:text-3xl font-medium drop-shadow-md mb-3 animate-fade-in-up animation-delay-150 max-w-2xl leading-snug">
+        Upload a photo of your plant and get instant diagnosis
+      </p>
+
+      <p className="text-green-100/90 text-lg md:text-2xl font-medium drop-shadow-md mb-14 animate-fade-in-up animation-delay-300 max-w-xl">
+        with expert-verified results.
+      </p>
+
+      <div className="flex flex-col xl:flex-row items-start xl:items-center gap-8 animate-fade-in-up animation-delay-500">
+
+        {/* CTA Button */}
+        <button
+          onClick={() => openModal('device')}
+          className="group relative overflow-hidden bg-white text-green-900 font-bold px-8 py-4 rounded-full shadow-[0_10px_40px_rgba(255,255,255,0.25)] hover:shadow-[0_15px_50px_rgba(255,255,255,0.4)] transition-all duration-300 ease-out transform hover:-translate-y-1 flex items-center gap-4"
+        >
+          <span className="relative z-10 font-poppins text-[19px] tracking-wide ml-2">
+            Start Scanning
+          </span>
+
+          <span className="relative z-10 w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center group-hover:bg-green-700 group-hover:text-white transition-colors duration-300 shadow-sm">
+            <svg className="w-5 h-5 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+          </span>
+
+          <div className="absolute inset-0 bg-gradient-to-r from-white to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+
+        {/* Stats */}
+        <div className="flex flex-col sm:flex-row gap-5 sm:gap-7 text-green-50 font-poppins text-sm md:text-base opacity-95 backdrop-blur-md bg-black/25 py-3.5 px-7 rounded-2xl border border-white/15 shadow-xl">
+
+          <div className="flex items-center gap-3">
+            <div className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
             </div>
+            <span className="font-semibold tracking-wide">10,000+ Diagnosed</span>
           </div>
+
+          <div className="hidden sm:block text-white/30">|</div>
+
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.6)]"></span>
+            <span className="font-semibold tracking-wide">98% Accuracy</span>
+          </div>
+
+          <div className="hidden sm:block text-white/30">|</div>
+
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(96,165,250,0.6)]"></span>
+            <span className="font-semibold tracking-wide">Expert Verified</span>
+          </div>
+
         </div>
-      </section>
+
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* PROJECT DETAILS (FLIP CARDS) SECTION */}
-      <section className="w-full py-28 relative z-20 bg-[#F8FAFC]">
+      <section className="w-full py-28 relative z-20 bg-gradient-to-b from-black via-green-950 to-green-900">
         {/* subtle bg blur */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-green-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
-
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-800 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm border border-green-200">
@@ -177,7 +206,6 @@ export default function Home() {
                       {card.backText}
                     </p>
                   </div>
-
                 </div>
               </div>
             ))}
@@ -196,6 +224,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent via-black/60 to-black pointer-events-none"></div>
       </section>
     </main>
   );

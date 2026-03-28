@@ -43,7 +43,7 @@ export default function UploadModal({ isOpen, onClose, uploadType }: { isOpen: b
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-in fade-in duration-300">
-            <div className="relative bg-white rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl border border-green-100 flex flex-col transform transition-all scale-100 opacity-100">
+            <div className="relative bg-green-950/90 backdrop-blur-xl rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl border border-green-100 flex flex-col transform transition-all scale-100 opacity-100">
 
                 {/* Modal Header */}
                 <div className="relative p-7 pb-4 flex justify-between items-center z-10">
